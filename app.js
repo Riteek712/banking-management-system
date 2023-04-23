@@ -197,6 +197,9 @@ app.get("/custPopup",(req,res)=>{
 app.get("/custdip",(req,res)=>{
   res.render("custDiposit",{title:"User Diposit page", serverError: req.flash('server-error') })
 })
+app.get("/adminOrCustomer2",(req,res)=>{
+  res.render("adminOrCustomer2",{title:"admin or customer", serverError: req.flash('server-error') })
+})
 
 app.get("/custWithdraw",(req,res)=>{
   res.render("custWithdraw",{title:"User Diposit page", serverError: req.flash('server-error') })
@@ -434,8 +437,8 @@ app.post("/moneyDiposit",(req,res)=>{
         var data2= JSON.parse(JSON.stringify(result2));
         var amount= parseInt(data2[0].Balance) + parseInt(data.Diposit_Withdraw);
         // // comment out console.log(amount);
-        if(pass==data2[0].Password)
-        {
+        //if(//pass==data2[0].Password)
+        
           let sql = "Insert into transaction set ?";
           let query = db.query(sql, data, function (err, result) {
             if (err) {
@@ -448,11 +451,11 @@ app.post("/moneyDiposit",(req,res)=>{
               })
             }
           });
-        }
-        else{
+        
+        /*else{
           req.flash('server-error',"Check The Inputs Again");
           res.redirect("/custdip");
-        }
+        }*/
       }
       else{
         req.flash('server-error',"Check The Inputs Again");
